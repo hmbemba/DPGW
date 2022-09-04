@@ -7,7 +7,12 @@ import uuid
 @dataclass
 class BaseView(metaclass=ABCMeta):
     '''
-    Implement This
+from dataclasses import dataclass
+from gui.DPGW.BaseView import BaseView
+from gui.DPGW.Container import Container
+import dearpygui.dearpygui as dpg
+
+
 @dataclass
 class MyView(BaseView):
     def __post_init__(self):
@@ -16,18 +21,22 @@ class MyView(BaseView):
             self.top = Container(
                 **{
                     "tag": f"top_{self.id}",
-                    "w": 0,
-                    "h": 0,
-                    "autoSizeX": True,
-                    "autoSizeY": True,
-                    "itemOrientation": "col",
-                    # 'horzGap': 50,
+                    "show": True,
+                    "w": -1,  # -1 is full, 0 is default, .001 to 1 is multiplied to screenWidth, 1.001+ = pixel values
+                    "h": -1,  # -1 is full, 0 is default, .001 to 1 is multiplied to screenHeight, 1.001+ = pixel values
+                    "autoSizeX": False,  # Overtakes w
+                    "autoSizeY": False,  # Overtakes h
+                    "itemOrientation": "col",  # row = items stacked left to right, col = items stacked top to btm
+                    "horzGap": 0,  # space between items when itemOrientation is row
+                    "verticalItemSpacing": [0, 0],
                     "border": True,
-                    # "bkgColor": [117, 50, 249],
-                    "borderColor": [255, 0, 0, 0],
-                    # 'borderRadius': 10,
-                    "padding": [5, 50],
-                    "verticalItemSpacing": [0, 10],
+                    "borderRadius": 0,
+                    "borderColor": [255, 0, 0, 255],  # "orange",
+                    "bkgColor": [0, 0, 255, 255],
+                    "padding": [0, 0],  # [LR,TB] !Can also be negative
+                    "onHover": None,
+                    "noScrollBar": True,
+                    "font": None,  # "main_20"
                 }
             ).create()
     
