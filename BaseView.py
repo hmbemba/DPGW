@@ -7,7 +7,11 @@ import uuid
 @dataclass
 class BaseView(metaclass=ABCMeta):
     '''
-    Implement This
+from dataclasses import dataclass
+from DPGW.BaseView import BaseView
+from DPGW.Container import Container
+import dearpygui.dearpygui as dpg
+
 @dataclass
 class MyView(BaseView):
     def __post_init__(self):
