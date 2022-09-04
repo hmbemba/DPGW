@@ -5,15 +5,13 @@ from .Styles import DpgColor, DpgStyles
 from .BaseItem import BaseItem
 import dearpygui.dearpygui as dpg
 from typing import List
-
+from .MyColor import MyColor
 
 @dataclass
 class Text(BaseItem):
     """
-    Styles = {
+    **{
          "tag": f"_{self.id}",
-         "w": 0, # 0 is default 
-         "h": 0, # 0 is default 
          "color": [255,255,255,255], 
          "text": '',
          "bullet": False,
@@ -30,14 +28,14 @@ class Text(BaseItem):
     
     def Styles(self):
         ...
-
+    def setValue(self, value:str):
+        dpg.set_value(self.tag,value)   
+    
     def create(self, Parent=None):
         values = {
             "tag": self.tag,
-            # "width": self.w,
-            # "height": self.h,
             "default_value": self.text,
-            "color": self.color
+            "color": MyColor.get(self.color) if isinstance(self.color, str) else self.color
             
         }
         if Parent:
@@ -48,5 +46,6 @@ class Text(BaseItem):
         self.addStyles()
 
         self.addFont()
+        return self
 
 

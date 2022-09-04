@@ -8,7 +8,7 @@ import dearpygui.dearpygui as dpg
 @dataclass
 class Input(BaseItem):
     """
-    Styles = {
+    ** {
          "tag": f"_{self.id}",
          "w": -1,  # 0.58,
          "h": 200,#-1,
@@ -51,6 +51,12 @@ class Input(BaseItem):
 
     def getValue(self):
         return dpg.get_value(self.tag)
+    
+    def setValue(self, value:str):
+        dpg.set_value(self.tag,value)    
+    
+    def clear(self):
+        dpg.set_value(self.tag,'')
     
     def create(self, Parent=None) -> object:
         values = {

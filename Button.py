@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Any
 from .BaseItem import BaseItem
 from .Styles import DpgColor, DpgStyles
 import dearpygui.dearpygui as dpg
@@ -13,7 +13,7 @@ screen_height = root.winfo_screenheight()
 @dataclass(slots=True)
 class Button(BaseItem):
     """
-    styles = {
+    **{
         "tag": f"_{self.id}",
         "w": -1,
         "h": -1,
@@ -21,6 +21,7 @@ class Button(BaseItem):
         "textColor": [255,255,255,255],#"white",
         "font": "mainFont_50",
         "callback": None, #self.autoFind,
+        "user_data": ...,
         "border": False,
         "borderRadius": 0,
         "borderColor": [0,0,0,0], #'red',
@@ -40,6 +41,7 @@ class Button(BaseItem):
     textColor: List = field(default_factory=lambda: [0, 0, 0, 0])
 
     text: str = None
+    user_data: Any = None
 
     def __post_init__(self):
         self.w = self.mapWidthHeight(self.w)
@@ -66,6 +68,7 @@ class Button(BaseItem):
             "height": self.h,
             "label": self.text,
             "callback": self.callback,
+            "user_data": self.user_data
         }
 
         if Parent:

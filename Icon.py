@@ -90,3 +90,4 @@ class Icon(BaseItem):
 
         # if self.focus:
         #     dpg.focus_item(self.tag)
+

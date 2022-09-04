@@ -4,14 +4,6 @@ from .Styles import DpgColor, DpgStyles
 import dearpygui.dearpygui as dpg
 from .Container import Container
 
-# import tkinter as tk
-
-
-# root = tk.Tk()
-# screen_width = root.winfo_screenwidth()
-# screen_height = root.winfo_screenheight()
-
-
 class Row(BaseItem):
     """
     Styles = {
