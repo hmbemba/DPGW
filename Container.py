@@ -20,7 +20,7 @@ class Container(BaseItem):
         
     # Styles
 
-        Styles = {
+        **{
             "tag": f"top_{self.id}",
             "show": True,
             "w": -1,  # -1 is full, 0 is default, .001 to 1 is multiplied to screenWidth, 1.001+ = pixel values
