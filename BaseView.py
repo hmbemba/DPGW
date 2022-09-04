@@ -8,11 +8,6 @@ import uuid
 class BaseView(metaclass=ABCMeta):
     '''
 from dataclasses import dataclass
-from DPGW.BaseView import BaseView
-from DPGW.Container import Container
-import dearpygui.dearpygui as dpg
-
-from dataclasses import dataclass
 from gui.DPGW.BaseView import BaseView
 from gui.DPGW.Container import Container
 import dearpygui.dearpygui as dpg
