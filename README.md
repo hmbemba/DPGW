@@ -1,10 +1,7 @@
 import dearpygui.dearpygui as dpg
-from GUI.Views.SelectVideoView import SelectVideoView
-from GUI.MyDPG.Styles import DpgColor, addStyles, DpgStyles
-from GUI.Views.ClientFormView import ClientFormView
-from GUI.Views.ProcessingVideoView import ProcessingVideoView
-#from GUI.Views.SelectSongView import SelectSongView
-# from GUI.Views.ShareVideoView import ShareVideoView
+from gui.Views.MainView import MyView
+from gui.DPGW.Styles import DpgStyles
+from gui.DPGW.Styles import DpgColor
 import tkinter as tk
 
 
@@ -24,21 +21,11 @@ with dpg.font_registry():
 with dpg.window(tag="Primary Window", no_scrollbar=True):
     
     #Define Views
-    svv = SelectVideoView()
-    cfv = ClientFormView()
-    #ssv = SelectSongView()
-    pvv = ProcessingVideoView()
-    # shvv = ShareVideoView()
+    view = MyView()
 
-    # Configure View Routing
-    svv.setNextPage(cfv)
-    cfv.setNextPage(pvv)
-    # ssv.setNextPage(pvv)
-    pvv.setNextPage(svv)
-    # shvv.setNextPage(svv)
 
     # Show Starting View
-    svv.show()
+    view.show()
 
 
 with dpg.theme() as item_theme:
