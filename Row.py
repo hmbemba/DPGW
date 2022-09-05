@@ -14,6 +14,7 @@ class Row(BaseItem):
         "border":True,
         "bkgColor":[255,0,0,255],
         "padding": [10,0] # Default is [10,0]
+        "user_data": None,
 
         }
     """
@@ -30,6 +31,7 @@ class Row(BaseItem):
         sizing=None,
         bkgColor=[0, 0, 0, 0],
         padding=[10, 0],
+        user_data = None,
     ):
         self._parent = parent
         self._numCols = numCols
@@ -41,6 +43,7 @@ class Row(BaseItem):
         self.sizing = sizing
         self.bkgColor = bkgColor
         self.padding = padding
+        self.user_data = user_data
 
     def create(self):
 
@@ -64,6 +67,7 @@ class Row(BaseItem):
             # height=self.h,
             policy=sizingPolicy.get(self.sizing, dpg.mvTable_SizingStretchProp),
             pad_outerX=True,
+            user_data= self.user_data
         )
         dpg.add_table_row(
             tag=f"{self.tag}_row",
