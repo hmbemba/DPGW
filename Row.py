@@ -6,14 +6,14 @@ from .Container import Container
 
 class Row(BaseItem):
     """
-    Styles = {
+    **{
         "tag": f"row_1_{self.id}",
         "parent":self.top.link(),
         "numCols":2,
         "sizing":0, #,1,2,3,
         "border":True,
         "bkgColor":[255,0,0,255],
-        "padding": [10,0] # Default is [10,0]
+        "padding": [10,0], # Default is [10,0]
         "user_data": None,
 
         }
