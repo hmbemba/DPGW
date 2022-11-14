@@ -109,4 +109,13 @@ class MyView(BaseView):
                     dpg.add_item_visible_handler(callback=_center_v, user_data=[item, y_align])
 
             dpg.bind_item_handler_registry(item, dpg.last_container())
+    
+    def centerTop(self,item):
+        self.auto_align(item, 0)
+        
+    def centerLeft(self,item):
+        self.auto_align(item, 1)
+        
+    def centerMiddle(self,item):
+        self.auto_align(item, 2)
 
