@@ -10,7 +10,6 @@ class Row(BaseItem):
     """
     **{
         "tag": f"row_1_{self.id}",
-        "parent":self.top.link(),
         "numCols":2,
         "sizing":0, #,1,2,3,
         "border":True,
