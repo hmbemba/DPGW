@@ -41,7 +41,7 @@ class Button(BaseItem):
     textColor: List = field(default_factory=lambda: [0, 0, 0, 0])
 
     text: str = None
-    user_data: Any = None
+    
 
     def __post_init__(self):
         self.w = self.mapWidthHeight(self.w)

@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field, asdict
 import dearpygui.dearpygui as dpg
 from abc import ABCMeta, abstractmethod
-from typing import List
+from typing import List, Any
 import tkinter as tk
 
 
@@ -50,6 +50,8 @@ class BaseItem(metaclass=ABCMeta):
     font: str = None
 
     onHover: str = None
+    
+    user_data: Any = None
 
     def getPars(self):
         return asdict(self)
