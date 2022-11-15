@@ -1,6 +1,6 @@
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta
 import dearpygui.dearpygui as dpg
-from dataclasses import dataclass, field, asdict
+from dataclasses import dataclass
 import uuid
 
 
@@ -45,22 +45,18 @@ class MyView(BaseView):
     def getId(self):
         return uuid.uuid4()
     
-    # @abstractmethod
-    # def show(self):
-    #     ...
+
     def show(self):
         dpg.push_container_stack("Primary Window")
         dpg.unstage(f"Stage_{self.id}")
         dpg.pop_container_stack()
     
-
-        
-
     '''
     Implement functionality to delete the view itself
     '''
     def hide(self):
         dpg.delete_item("Primary Window", children_only=True)
+        #dpg.delete_item(self.top.tag)
 
     def setNextPage(self, View):
         self.gotoNextPage = View.show 
