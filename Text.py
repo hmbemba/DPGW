@@ -5,7 +5,6 @@ from .Styles import DpgColor, DpgStyles
 from .BaseItem import BaseItem
 import dearpygui.dearpygui as dpg
 from typing import List
-from .MyColor import MyColor
 
 
 '''
