@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from textwrap import wrap
-from .Styles import DpgColor, DpgStyles
+from .Styles import setColor, setStyles
 from .BaseItem import BaseItem
 import dearpygui.dearpygui as dpg
 
@@ -36,16 +36,16 @@ class Input(BaseItem):
     hint: str = None
 
     def Styles(self):
-        DpgColor(self.bkgColor).frameBg()
+        setColor.frameBgColor(self.bkgColor)
         # DpgColor(self._bkgColorHovered[0]).buttonBgHovered()
         # DpgColor(self._bkgColorClicked[0]).buttonBgClicked()
         # DpgColor(self._textColor).text()
         # DpgColor("green").frameBgHovered()
-        DpgColor(self.borderColor).border()
+        setColor.borderColor(self.borderColor)
 
-        DpgStyles.frameBorder(self.border)
-        DpgStyles.borderRadius(self.borderRadius)
-        DpgStyles.padding(self.padding[0], self.padding[1])
+        setStyles.frameBorder(self.border)
+        setStyles.borderRadius(self.borderRadius)
+        setStyles.padding(self.padding[0], self.padding[1])
         # DpgColor('white').frameBgHovered()
         # DpgStyles.windowPadding(0,0)
 

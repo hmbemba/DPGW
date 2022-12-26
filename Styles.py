@@ -1,11 +1,12 @@
 import dearpygui.dearpygui as dpg
-from .MyColor import MyColor
 from typing import TypeVar
+from colour import Color
+
 
 DPG_Tag = TypeVar("DPG_Tag")
 
 
-class DpgStyles:
+class setStyles:
     def childRounding(amt):
         return dpg.add_theme_style(
             dpg.mvStyleVar_ChildRounding, amt, category=dpg.mvThemeCat_Core
@@ -85,72 +86,89 @@ class DpgStyles:
             category=dpg.mvThemeCat_Core,
         )
 
+class setColor:
 
-class DpgColor:
-    def __init__(self, color: list | str) -> None:
-        if isinstance(color, str):
-            self.color = MyColor.get(color)
-        else:
-            self.color = color
+    def textToColorList(colorname, alpha = 255) -> list:
+        '''
+        Converts a textual color like 'red' into a color list [r,g,b,a]
+        '''
+        vals = [value*255 for value in Color(colorname).rgb]
+        vals.append(alpha)
+        return vals
+    
+    def validateColorList(colorList:list):
+        '''
+        can only have a len of 4        
+        '''
+        if len(colorList) != 4:
+            raise Exception(f'The color list must be 4 values [r,g,b,a] you entered {colorList} ')
+        return colorList
+        
+    def fmtColor(color: list | str) -> list:
+        '''
+        takes either a list or a string and returns a valid color list 
+        '''
+        return setColor.textToColorList(color) if isinstance(color, str) else setColor.validateColorList(color)
 
-    def text(self):
+
+    def textColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_Text, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_Text, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
-    def textDisabled(self):
+    def textDisabledColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_TextDisabled, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_TextDisabled, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
-    def textSelectedBg(self):
+    def textSelectedBgColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_TextSelectedBg, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_TextSelectedBg, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
-    def childBg(self):
+    def childBgColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_ChildBg, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_ChildBg, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
-    def windowBg(self):
+    def windowBgColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_WindowBg, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_WindowBg, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
-    def border(self):
+    def borderColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_Border, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_Border, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
-    def frameBg(self):
+    def frameBgColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_FrameBg, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_FrameBg, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
-    def frameBgHovered(self):
+    def frameBgHoveredColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_FrameBgHovered, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_FrameBgHovered, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
-    def frameBgActive(self):
+    def frameBgActiveColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_FrameBgActive, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_FrameBgActive, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
-    def buttonBg(self):
+    def buttonBgColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_Button, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_Button, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
-    def buttonBgHovered(self):
+    def buttonBgHoveredColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_ButtonHovered, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_ButtonHovered, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
-    def buttonBgClicked(self):
+    def buttonBgClickedColor(color):
         return dpg.add_theme_color(
-            dpg.mvThemeCol_ButtonActive, self.color, category=dpg.mvThemeCat_Core
+            dpg.mvThemeCol_ButtonActive, setColor.fmtColor(color), category=dpg.mvThemeCat_Core
         )
 
 
