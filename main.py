@@ -2,13 +2,10 @@ import dearpygui.dearpygui as dpg
 # from gui.Views.MainView import MyView
 # from gui.DPGW.Styles import DpgStyles
 # from gui.DPGW.Styles import DpgColor
-import tkinter as tk
 from utilities import PrimaryWindow
 
 
-root = tk.Tk()
-screen_width = root.winfo_screenwidth()
-screen_height = root.winfo_screenheight()
+
 
 dpg.create_context()
 
@@ -22,8 +19,11 @@ with dpg.font_registry():
 # with dpg.window(tag="Primary Window", no_scrollbar=True):
 #     ...
 
-with PrimaryWindow() as pm:
-    dpg.add_text(default_value = "Hello, world", parent = pm.tag)
+# with PrimaryWindow() as pw:
+#     dpg.add_text(default_value = "Hello, world", parent = pw.tag)
+
+with PrimaryWindow(title="Main"):
+    dpg.add_text(default_value = "Hello, world")
     # #Define Views
     # view = MyView()
 
@@ -38,7 +38,6 @@ with PrimaryWindow() as pm:
 #         DpgColor([31, 31, 31, 255]).windowBg()
 # dpg.bind_item_theme("Primary Window", item_theme)
 
-dpg.create_viewport(title="RevOH", width=int(screen_width*1), height=int(screen_height*1))
 dpg.setup_dearpygui()
 dpg.show_viewport()
 dpg.set_primary_window("PrimaryWindow", True)
