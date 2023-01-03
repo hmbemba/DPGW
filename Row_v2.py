@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from .BaseItem import BaseItem
-from .Styles import DpgColor, DpgStyles
+from .Styles import setColor, setStyles
 import dearpygui.dearpygui as dpg
 from .Container import Container
 from typing import Any
@@ -76,4 +76,4 @@ class Row(BaseItem):
 
     def Styles(self):
         dpg.highlight_table_row(f"{self.tag}_table", 0, self.bkgColor)
-        DpgStyles.cellPadding(self.padding[0], self.padding[1])
+        setStyles.cellPadding(self.padding[0], self.padding[1])

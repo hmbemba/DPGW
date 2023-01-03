@@ -41,13 +41,14 @@ class MyView(BaseView):
             ).create()
     
     '''
+    windowTag: str
 
     def getId(self):
         return uuid.uuid4()
     
 
     def show(self):
-        dpg.push_container_stack("Primary Window")
+        dpg.push_container_stack(self.windowTag)
         dpg.unstage(f"Stage_{self.id}")
         dpg.pop_container_stack()
     
@@ -55,7 +56,7 @@ class MyView(BaseView):
     Implement functionality to delete the view itself
     '''
     def hide(self):
-        dpg.delete_item("Primary Window", children_only=True)
+        dpg.delete_item(self.windowTag, children_only=True)
         #dpg.delete_item(self.top.tag)
 
     def setNextPage(self, View):

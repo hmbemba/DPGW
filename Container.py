@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List
 from .BaseItem import BaseItem
-from .Styles import DpgColor, DpgStyles
+from .Styles import setColor, setStyles
 import dearpygui.dearpygui as dpg
 import tkinter as tk
 
@@ -80,13 +80,13 @@ class Container(BaseItem):
             )
 
     def Styles(self):
-        DpgColor(self.borderColor).border()
-        DpgColor(self.bkgColor).childBg()
+        setColor.borderColor(self.borderColor)
+        setColor.childBgColor(self.bkgColor)
 
-        DpgStyles.childRounding(self.borderRadius)     
-        DpgStyles.windowBorder(self.border)
-        DpgStyles.windowPadding(self.padding[0], self.padding[1])
-        DpgStyles.itemSpacing(self.verticalItemSpacing[0], self.verticalItemSpacing[1])
+        setStyles.childRounding(self.borderRadius)     
+        setStyles.windowBorder(self.border)
+        setStyles.windowPadding(self.padding[0], self.padding[1])
+        setStyles.itemSpacing(self.verticalItemSpacing[0], self.verticalItemSpacing[1])
 
     def create(self, Parent=None) -> object:
         values  = {

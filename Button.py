@@ -1,6 +1,6 @@
 from typing import List, Any
 from .BaseItem import BaseItem
-from .Styles import DpgColor, DpgStyles
+from .Styles import setColor, setStyles
 import dearpygui.dearpygui as dpg
 import tkinter as tk
 from dataclasses import dataclass, field
@@ -50,16 +50,16 @@ class Button(BaseItem):
     """Methods to style and create this Item"""
 
     def Styles(self):
-        DpgColor(self.bkgColor).buttonBg()
-        DpgColor(self.bkgColorHovered).buttonBgHovered()
-        DpgColor(self.bkgColorClicked).buttonBgClicked()
-        DpgColor(self.textColor).text()
-        DpgColor(self.borderColor).border()
+        setColor.buttonBgColor(self.bkgColor)
+        setColor.buttonBgHoveredColor(self.bkgColorHovered)
+        setColor.buttonBgClickedColor(self.bkgColorClicked)
+        setColor.textColor(self.textColor)
+        setColor.borderColor(self.borderColor)
 
-        DpgStyles.frameBorder(self.border)
-        DpgStyles.borderRadius(self.borderRadius)
+        setStyles.frameBorder(self.border)
+        setStyles.borderRadius(self.borderRadius)
 
-        DpgStyles.padding(self.padding[0], self.padding[1])
+        setStyles.padding(self.padding[0], self.padding[1])
 
     def create(self, Parent=None) -> object:
         values = {
