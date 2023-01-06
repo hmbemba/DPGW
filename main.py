@@ -28,7 +28,7 @@ def start():
                 "tag": f"icon",
                 "w": 0,  # 0 is default image width
                 "h": 0,  # 0 is default image height
-                "imagePath": "img_resized.png",
+                "imagePath": "Icons/PNG/Apps.png",
             }
         ).create(Parent= win)
 
@@ -36,3 +36,6 @@ def start():
 
 
 start()
+
+# import cairosvg
+# cairosvg.svg2pdf(url=r'C:\Users\hmbem\Desktop\SVG\Apps.svg', write_to='image.png')

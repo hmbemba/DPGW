@@ -9,6 +9,16 @@ import dearpygui.dearpygui as dpg
 class NotAFileError(ValueError):
     pass
 
+# Needs to generate the icons on the fly by converting the svg
+# need to be able to determine size + color
+# before dpg start need to create these icons
+'''
+with iconRegistry('pathToSaveIcons')
+    createIcon('pathToIcon',iconName,w,h,color)
+
+
+Icon(tag, iconPath)
+'''
 
 @dataclass
 class Icon(BaseItem):
