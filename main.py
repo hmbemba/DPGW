@@ -27,7 +27,7 @@ def start():
             **{
                 "tag": f"row_1_",
                 "numCols": 3,
-                "sizing": 0,  # ,1,2,3,
+                "sizing": 3,  # ,1,2,3,
                 "border": True,
                 "bkgColor": [255, 255, 0, 5],
                 "padding": [10, 0],  # Default is [10,0]
@@ -55,7 +55,7 @@ def start():
             }
         )#.create(r.link())
         
-        dpg.add_spacer(parent=r.link(), width=100)
+        #dpg.add_spacer(parent=r.link(), width=100)
         
         Button(
             **{
@@ -75,18 +75,18 @@ def start():
                 "bkgColorClicked": [0, 0, 0, 0],  #'green',
                 "padding": [0, 0],  # [10, 10],
             }
-        )#.create(r.link())
+        ).create(r.link())
         
         dpg.add_loading_indicator(parent=r.link(), radius=10)
         
-        dpg.add_spacer(parent=r.link())
+        #dpg.add_spacer(parent=r.link(), width=-1)
 
 
         Button(
             **{
                 "tag": f"b3",
                 "w": -1,
-                "h": 100,
+                "h": 0,
                 "text": "Btn Text",
                 "textColor": [255, 255, 255, 255],  # "white",
                 "font": "mainFont_50",
@@ -100,7 +100,7 @@ def start():
                 "bkgColorClicked": [0, 0, 0, 0],  #'green',
                 "padding": [0, 0],  # [10, 10],
             }
-        )#.create(r.link())
+        ).create(r.link())
         # Icon(
         #     **{
         #         "tag": f"icon",
