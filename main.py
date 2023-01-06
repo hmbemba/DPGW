@@ -1,15 +1,14 @@
 import dearpygui.dearpygui as dpg
+
 # from gui.Views.MainView import MyView
 # from gui.DPGW.Styles import DpgStyles
 # from gui.DPGW.Styles import DpgColor
 from utilities import PrimaryWindow, startDPG
 from grid import Grid
+from Icon import Icon
 
 
-
-
-#dpg.create_context()
-
+# dpg.create_context()
 
 
 @startDPG
@@ -22,17 +21,18 @@ def start():
         dpg.add_font(r"C:\Windows\Fonts\bahnschrift.ttf", 50, tag="mainFont_50")
 
     with PrimaryWindow(title="Main") as win:
-        grid = Grid(win, cols=6, rows=6, padding=(0,0), spacing=(10,10))
-        j = dpg.add_button(label = "Hello, world")
-        #grid.pack(j,5,0)
-
+        grid = Grid(win, cols=6, rows=6, padding=(0, 0), spacing=(10, 10))
+        j = dpg.add_button(label="Hello, world")
+        Icon(
+            **{
+                "tag": f"icon",
+                "w": 0,  # 0 is default image width
+                "h": 0,  # 0 is default image height
+                "imagePath": "img_resized.png",
+            }
+        ).create(Parent= win)
 
         dpg.set_viewport_resize_callback(grid.redraw)
 
+
 start()
-
-    
-    
-
-
-

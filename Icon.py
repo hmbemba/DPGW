@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from pathlib import Path
 from textwrap import wrap
-from .Styles import DpgColor, DpgStyles
-from .BaseItem import BaseItem
+#from .Styles import DpgColor, DpgStyles
+from BaseItem import BaseItem
 import dearpygui.dearpygui as dpg
 
 
@@ -12,8 +12,13 @@ class NotAFileError(ValueError):
 
 @dataclass
 class Icon(BaseItem):
+    '''
+    You have to presize the image befoe you laod it in
+    There is no real resizing
+    '''
+    
     """
-    Styles = {
+    **{
          "tag": f"_{self.id}",
          "w": 0, # 0 is default image width
          "h": 0, # 0 is default image height
@@ -48,6 +53,7 @@ class Icon(BaseItem):
             ".pic",
             ".ppm",
             ".pgm",
+            
         ]
         if not {s.lower(): True for s in allowedSuffixes}.get(pathSuffix, False):
             raise ValueError("This is not an image file")
@@ -56,13 +62,6 @@ class Icon(BaseItem):
         ...
 
     def create(self, Parent=None):
-        # values = {
-        #     "tag": self.tag,
-        #     "width": self.w,
-        #     "height": self.h,
-        # }
-        # if Parent:
-        #     values["parent"] = Parent
 
         with dpg.texture_registry():
             if self.w == 0 and self.h == 0:
@@ -81,13 +80,4 @@ class Icon(BaseItem):
         
         dpg.add_image(self.tag, parent=Parent)
 
-        # self.addStyles()
-
-        # self.addFont()
-
-        # if self.onHover:
-        #     self.setHoverCallback(self.onHover)
-
-        # if self.focus:
-        #     dpg.focus_item(self.tag)
 
