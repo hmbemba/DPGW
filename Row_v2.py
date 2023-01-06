@@ -1,8 +1,8 @@
 from dataclasses import dataclass, field
-from .BaseItem import BaseItem
-from .Styles import setColor, setStyles
+from BaseItem import BaseItem
+from Styles import setColor, setStyles
 import dearpygui.dearpygui as dpg
-from .Container import Container
+from Container import Container
 from typing import Any
 
 @dataclass(slots=True)

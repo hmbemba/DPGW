@@ -1,7 +1,7 @@
 from dataclasses import dataclass, field
 from typing import List
-from .BaseItem import BaseItem
-from .Styles import setColor, setStyles
+from BaseItem import BaseItem
+from Styles import setColor, setStyles
 import dearpygui.dearpygui as dpg
 import tkinter as tk
 

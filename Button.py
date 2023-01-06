@@ -1,13 +1,13 @@
 from typing import List, Any
-from .BaseItem import BaseItem
-from .Styles import setColor, setStyles
+from BaseItem import BaseItem
+from Styles import setColor, setStyles
 import dearpygui.dearpygui as dpg
-import tkinter as tk
+# import tkinter as tk
 from dataclasses import dataclass, field
 
-root = tk.Tk()
-screen_width = root.winfo_screenwidth()
-screen_height = root.winfo_screenheight()
+# root = tk.Tk()
+# screen_width = root.winfo_screenwidth()
+# screen_height = root.winfo_screenheight()
 
 
 @dataclass(slots=True)
@@ -29,7 +29,6 @@ class Button(BaseItem):
         "bkgColorHovered": [0, 0, 0, 0],#[37 * 0.7, 37 * 0.7, 38 * 0.7, 255],
         'bkgColorClicked': [0, 0, 0, 0],#'green',
         "padding": [0,0] ,#[10, 10],
-
     }
 
     """
