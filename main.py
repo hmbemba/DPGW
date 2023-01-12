@@ -22,7 +22,7 @@ def start():
         dpg.add_font(r"C:\Windows\Fonts\bahnschrift.ttf", 40, tag="mainFont_40")
         dpg.add_font(r"C:\Windows\Fonts\bahnschrift.ttf", 50, tag="mainFont_50")
 
-    with PrimaryWindow(title="Main") as win:
+    with PrimaryWindow(title="Main", w=850,h=600) as win:
         r = Row(
             **{
                 "tag": f"row_1_",
