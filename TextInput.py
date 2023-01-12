@@ -6,7 +6,7 @@ import dearpygui.dearpygui as dpg
 
 
 @dataclass
-class Input(BaseItem):
+class TextInput(BaseItem):
     """
     ** {
          "tag": f"_{self.id}",
