@@ -4,6 +4,7 @@ from Icon import Icon
 from Row import Row
 from Button import Button
 from Container import Container
+from Themes import loudContainer
 
 
 @startDPG
@@ -15,28 +16,8 @@ def start():
         dpg.add_font(r"C:\Windows\Fonts\bahnschrift.ttf", 40, tag="mainFont_40")
         dpg.add_font(r"C:\Windows\Fonts\bahnschrift.ttf", 50, tag="mainFont_50")
 
-    with PrimaryWindow(title="Main", w=850,h=600, debug=False) as win:
-        top = Container(
-                    **{
-            "tag": f"top_",
-            "show": True,
-            "w": -1,  # -1 is full, 0 is default, .001 to 1 is multiplied to screenWidth, 1.001+ = pixel values
-            "h": -1,  # -1 is full, 0 is default, .001 to 1 is multiplied to screenHeight, 1.001+ = pixel values
-            "autoSizeX": False,  # Overtakes w
-            "autoSizeY": False,  # Overtakes h
-            "itemOrientation": "col",  # row = items stacked left to right, col = items stacked top to btm
-            "horzGap": 0,  # space between items when itemOrientation is row
-            "verticalItemSpacing": [0, 0],
-            "border": True,
-            "borderRadius": 0,
-            "borderColor": "grey",#[0, 0, 0, 255],  # "orange",
-            "bkgColor": [0, 0, 255,0],
-            "padding": [0,0],  # [LR,TB] !Can also be negative
-            "onHover": None,
-            "noScrollBar": True,
-            "font": None,  # "main_20"
-        }
-        ).create(Parent=win)
+    with PrimaryWindow(title="Main", w=850, h=600, debug=False) as win:
+        top = Container(**loudContainer("top")).create(Parent=win)
         r = Row(
             **{
                 "tag": f"row_1_",
@@ -67,10 +48,10 @@ def start():
                 "bkgColorClicked": [0, 0, 0, 0],  #'green',
                 "padding": [0, 0],  # [10, 10],
             }
-        )#.create(r.link())
-        
-        #dpg.add_spacer(parent=r.link(), width=100)
-        
+        )  # .create(r.link())
+
+        # dpg.add_spacer(parent=r.link(), width=100)
+
         Button(
             **{
                 "tag": f"b2",
@@ -90,9 +71,9 @@ def start():
                 "padding": [0, 0],  # [10, 10],
             }
         ).create(r.link())
-        
-        k =dpg.add_loading_indicator(parent=r.link(), radius=10)
-        
+
+        k = dpg.add_loading_indicator(parent=r.link(), radius=10)
+
         I = Icon(
             **{
                 "tag": f"icon",
@@ -101,14 +82,11 @@ def start():
                 "imagePath": "Icons/PNG/Apps.png",
             }
         ).create(Parent=r.link())
-        
-           
-        #I.debug()
-        #dpg.show_item_debug(I.tag)
-        #dpg.show_item_registry()
-        #dpg.show_metrics()
-        
-        
+
+        # I.debug()
+        # dpg.show_item_debug(I.tag)
+        # dpg.show_item_registry()
+        # dpg.show_metrics()
 
 
 start()
