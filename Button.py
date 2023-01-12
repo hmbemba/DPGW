@@ -2,12 +2,7 @@ from typing import List, Any
 from BaseItem import BaseItem
 from Styles import setColor, setStyles
 import dearpygui.dearpygui as dpg
-# import tkinter as tk
 from dataclasses import dataclass, field
-
-# root = tk.Tk()
-# screen_width = root.winfo_screenwidth()
-# screen_height = root.winfo_screenheight()
 
 
 @dataclass(slots=True)
