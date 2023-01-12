@@ -1,12 +1,7 @@
 import dearpygui.dearpygui as dpg
-
-# from gui.Views.MainView import MyView
-# from gui.DPGW.Styles import DpgStyles
-# from gui.DPGW.Styles import DpgColor
 from utilities import PrimaryWindow, startDPG
-from grid import Grid
 from Icon import Icon
-from Row_v2 import Row
+from Row import Row
 from Button import Button
 
 
