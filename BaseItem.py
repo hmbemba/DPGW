@@ -95,8 +95,11 @@ class BaseItem(metaclass=ABCMeta):
 
     def deleteSelf(self) -> None:
         dpg.delete_item(self.tag)
+    
+    def debug(self):
+        dpg.show_item_debug(self.tag)
 
-    def onClick(self, callBack):
+    def onClick(self, callback):
         ...
 
     def setHoverCallback(self, callBack):

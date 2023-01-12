@@ -10,9 +10,8 @@ from utilities import PrimaryWindow, startDPG
 
 @startDPG
 def start():
-    with PrimaryWindow(title="Main", w=850,h=600) as win:
-        #demo.show_demo()
-        dpg.show_about()
+    with PrimaryWindow(title="Main", w=850,h=600, itemRegistry=True) as win:
+        demo.show_demo()
 
 start()
 

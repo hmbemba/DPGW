@@ -14,7 +14,7 @@ def start():
         dpg.add_font(r"C:\Windows\Fonts\bahnschrift.ttf", 40, tag="mainFont_40")
         dpg.add_font(r"C:\Windows\Fonts\bahnschrift.ttf", 50, tag="mainFont_50")
 
-    with PrimaryWindow(title="Main", w=850,h=600) as win:
+    with PrimaryWindow(title="Main", w=850,h=600, debug=True) as win:
         r = Row(
             **{
                 "tag": f"row_1_",
@@ -80,10 +80,17 @@ def start():
             }
         ).create(Parent=r.link())
         
-        dpg.show_item_debug(I.tag)
+           
+        #I.debug()
+        #dpg.show_item_debug(I.tag)
+        #dpg.show_item_registry()
+        #dpg.show_metrics()
+        
+        
 
 
 start()
+
 
 # import cairosvg
 # cairosvg.svg2pdf(url=r'C:\Users\hmbem\Desktop\SVG\Apps.svg', write_to='image.png')
