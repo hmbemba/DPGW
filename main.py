@@ -69,9 +69,9 @@ def start():
             }
         ).create(r.link())
         
-        dpg.add_loading_indicator(parent=r.link(), radius=10)
+        k =dpg.add_loading_indicator(parent=r.link(), radius=10)
         
-        Icon(
+        I = Icon(
             **{
                 "tag": f"icon",
                 "w": 0,  # 0 is default image width
@@ -79,6 +79,8 @@ def start():
                 "imagePath": "Icons/PNG/Apps.png",
             }
         ).create(Parent=r.link())
+        
+        dpg.show_item_debug(I)
 
 
 start()
