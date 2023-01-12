@@ -5,9 +5,6 @@ from Row import Row
 from Button import Button
 
 
-# dpg.create_context()
-
-
 @startDPG
 def start():
     with dpg.font_registry():
@@ -74,54 +71,14 @@ def start():
         
         dpg.add_loading_indicator(parent=r.link(), radius=10)
         
-        #dpg.add_spacer(parent=r.link(), width=-1)
-
-
-        Button(
+        Icon(
             **{
-                "tag": f"b3",
-                "w": -1,
-                "h": 0,
-                "text": "Btn Text",
-                "textColor": [255, 255, 255, 255],  # "white",
-                "font": "mainFont_50",
-                "callback": None,  # self.autoFind,
-                "user_data": ...,
-                "border": False,
-                "borderRadius": 0,
-                "borderColor": [0, 0, 0, 0],  #'red',
-                "bkgColor": [0, 0, 0, 0],
-                "bkgColorHovered": [0, 0, 0, 0],  # [37 * 0.7, 37 * 0.7, 38 * 0.7, 255],
-                "bkgColorClicked": [0, 0, 0, 0],  #'green',
-                "padding": [0, 0],  # [10, 10],
+                "tag": f"icon",
+                "w": 0,  # 0 is default image width
+                "h": 0,  # 0 is default image height
+                "imagePath": "Icons/PNG/Apps.png",
             }
-        ).create(r.link())
-        # Icon(
-        #     **{
-        #         "tag": f"icon",
-        #         "w": 0,  # 0 is default image width
-        #         "h": 0,  # 0 is default image height
-        #         "imagePath": "Icons/PNG/Apps.png",
-        #     }
-        # ).create(Parent=r.link())
-
-        # Icon(
-        #     **{
-        #         "tag": f"icon2",
-        #         "w": 0,  # 0 is default image width
-        #         "h": 0,  # 0 is default image height
-        #         "imagePath": "Icons/PNG/Apps.png",
-        #     }
-        # ).create(Parent=r.link())
-
-        # Icon(
-        #     **{
-        #         "tag": f"icon3",
-        #         "w": 0,  # 0 is default image width
-        #         "h": 0,  # 0 is default image height
-        #         "imagePath": "Icons/PNG/Apps.png",
-        #     }
-        # ).create(Parent=r.link())
+        ).create(Parent=r.link())
 
 
 start()
