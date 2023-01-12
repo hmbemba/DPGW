@@ -35,18 +35,22 @@ class BaseItem(metaclass=ABCMeta):
 
     tag: str
 
+    # w h
     w: int | float = 10
     h: int | float = 10
 
+    # Border
     border: bool = False
     borderRadius: int = 0
     borderColor: List = field(default_factory=lambda: [0, 0, 0, 0])
+
 
     bkgColor: List = field(default_factory=lambda: [0, 0, 0, 0])
 
     padding: List = field(default_factory=lambda: [0, 0, 0, 0])
 
     callback: callable = None
+    
     font: str = None
 
     onHover: str = None
