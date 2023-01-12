@@ -80,7 +80,7 @@ def start():
             }
         ).create(Parent=r.link())
         
-        dpg.show_item_debug(I)
+        dpg.show_item_debug(I.tag)
 
 
 start()

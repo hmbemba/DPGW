@@ -88,6 +88,7 @@ class Icon(BaseItem):
                 tag=self.tag,
             )
         
-        return dpg.add_image(self.tag, parent=Parent)
+        dpg.add_image(self.tag, parent=Parent)
+        return self
 
 
