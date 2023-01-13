@@ -22,7 +22,9 @@ class Row(BaseItem):
         }
     """
 
-
+    def __post_init__(self):
+        self.id = self.getId()
+        self.stage = dpg.add_stage(tag=f'item_stage_{self.id}')
 
     def enabledStyles(self):
         dpg.highlight_table_row(f"{self.tag}_table", 0, self.bkgColor)
@@ -56,8 +58,14 @@ class Row(BaseItem):
             "user_data" :  self.user_data,
             }
 
+        '''
+        If you supply a parent to the create function that will take precendence
+        '''
         if Parent:
             values["parent"] = Parent
+            self.parent = Parent
+        else:
+            values["parent"] = self.parent
 
         dpg.add_table(**values)
         dpg.add_table_row(
