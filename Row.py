@@ -22,9 +22,7 @@ class Row(BaseItem):
         }
     """
 
-    numCols : int = 0
-    w: int = 0 
-    sizing: int = 0
+
 
     def enabledStyles(self):
         dpg.highlight_table_row(f"{self.tag}_table", 0, self.bkgColor)

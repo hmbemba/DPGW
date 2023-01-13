@@ -88,9 +88,9 @@ class Button(BaseItem):
         self.addFont(self.enabledComp)
         self.addFont(self.disabledComp)
 
-
-        # if self.onHover:
-        #     self.setHoverCallback(self.onHover)
+        #self.setHoverCallback(self.enabledComp,'print')
+        if self.onHover:
+            self.setHoverCallback(self.onHover)
         
         return self
 

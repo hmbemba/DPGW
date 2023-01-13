@@ -8,16 +8,16 @@ from Themes import theme, loudContainer, blue
 from ThemedComponents import *
 
 
-
 @startDPG
 def start():
     
     theme.font.loadFont()
 
-    with PrimaryWindow(title="Main", w=850, h=600, itemRegistry=True) as win:
+    with PrimaryWindow(title="Main", w=850, h=600, itemRegistry=False) as win:
         with row('r1', 2).create(Parent=win) as r:
             p = primaryBtn('r1', 'Click To Disable', callback= lambda: d.disable() if d.enabled else d.enable()).create(Parent=r.link())
             d = successBtn('g1', 'Enabled',callback = lambda: p.disable() if p.enabled else p.enable()).create(Parent=r.link())
+        w = warningBtn('w1', 'THIS IS A WARNING!').create(Parent=win)
 
 start()
 
