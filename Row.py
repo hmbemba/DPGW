@@ -4,6 +4,8 @@ from Styles import setColor, setStyles
 import dearpygui.dearpygui as dpg
 from Container import Container
 from typing import Any
+from contextlib import contextmanager
+
 
 @dataclass(slots=True)
 class Row(BaseItem):
@@ -20,11 +22,18 @@ class Row(BaseItem):
         }
     """
 
-    numCols : int = 0# = numCols
+    numCols : int = 0
     w: int = 0 
-    sizing: int = 0# = sizing
+    sizing: int = 0
 
+    def enabledStyles(self):
+        dpg.highlight_table_row(f"{self.tag}_table", 0, self.bkgColor)
+        setStyles.cellPadding(self.padding[0], self.padding[1])
 
+    def disabledStyles(self):
+        ...
+        
+    @contextmanager
     def create(self, Parent: str = None):
 
         sizingPolicy = {
@@ -60,9 +69,9 @@ class Row(BaseItem):
 
         self.buildColumns()
         self.addFont(tag=f"{self.tag}_table")
-        self.addStyles(tag=f"{self.tag}_table")
+        self.addStyles(self.enabledStyles,f"{self.tag}_table")
         
-        return self
+        yield self
 
     def buildColumns(self):
         for col in range(0, self.numCols):
@@ -74,6 +83,4 @@ class Row(BaseItem):
     def link(self):
         return f"{self.tag}_row"
 
-    def Styles(self):
-        dpg.highlight_table_row(f"{self.tag}_table", 0, self.bkgColor)
-        setStyles.cellPadding(self.padding[0], self.padding[1])
+

@@ -163,9 +163,7 @@ yellow = {
     900: [51, 39, 1, 255],
 }
 
-
-
-class Primary:
+class ThemeColor:
     def __init__(self, colorMap: dict) -> None:
         self.colorMap = colorMap
     
@@ -188,6 +186,22 @@ class Primary:
     @property
     def disabled(self): 
         return self.colorMap[800] 
+
+class Primary(ThemeColor):
+    def __init__(self, colorMap: dict) -> None:
+        super().__init__(colorMap)
+
+class Success(ThemeColor):
+    def __init__(self, colorMap: dict) -> None:
+        super().__init__(colorMap)
+        
+class Danger(ThemeColor):
+    def __init__(self, colorMap: dict) -> None:
+        super().__init__(colorMap)
+
+class Warning(ThemeColor):
+    def __init__(self, colorMap: dict) -> None:
+        super().__init__(colorMap)
     
 
 @dataclass
@@ -245,30 +259,23 @@ class Font:
 @dataclass
 class MyTheme:
     primary:Primary
+    success: Success
+    danger: Danger
+    warning: Warning
+    
     bkg: Bkg
     text: Text
     font: Font
-    # success: Success
-    # danger: Danger
-    # warning: Warning
-    # font: Font
-    
+
 
 theme = MyTheme(
     primary= Primary(pink),
+    success = Success(green),
+    danger = Danger(red),
+    warning = Warning(yellow),
+    
     bkg = Bkg(gray),
     text = Text(),
     font = Font(r"C:\Windows\Fonts\bahnschrift.ttf")
 )
 
-'''
-implement functionality to be able to do 
-
-maybe use __new__??
-
-theme = MyTheme(
-    primary= Primary(pink, disabled = pink[100]),
-    bkg = Bkg(gray),
-    text = Text()
-)
-'''

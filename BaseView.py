@@ -57,7 +57,6 @@ class MyView(BaseView):
     '''
     def hide(self):
         dpg.delete_item(self.windowTag, children_only=True)
-        #dpg.delete_item(self.top.tag)
 
     def setNextPage(self, View):
         self.gotoNextPage = View.show 

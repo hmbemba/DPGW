@@ -3,7 +3,7 @@ import dearpygui.dearpygui as dpg
 from abc import ABCMeta, abstractmethod
 from typing import List, Any
 import tkinter as tk
-
+import uuid
 
 root = tk.Tk()
 screen_width = root.winfo_screenwidth()
@@ -36,8 +36,8 @@ class BaseItem(metaclass=ABCMeta):
     tag: str
 
     # w h
-    w: int | float = 10
-    h: int | float = 10
+    w: int = 10
+    h: int = 10
 
     # Border
     border: bool = False
@@ -56,6 +56,33 @@ class BaseItem(metaclass=ABCMeta):
     onHover: str = None
     
     user_data: Any = None
+    
+    parent: int = None
+    
+    # enabled / disabled state
+    enabled: bool = True
+    enabledComp: Any = 0
+    disabledComp: Any = 0
+    
+    # ID
+    id:str = ''
+    stage: Any = 0
+    
+    """Style and Configuration Properties"""
+
+    bkgColorDisabled: List = field(default_factory=lambda: [0, 0, 0, 0])
+    bkgColorHoveredDisabled: List = field(default_factory=lambda: [0, 0, 0, 0])
+    bkgColorClickedDisabled: List = field(default_factory=lambda: [0, 0, 0, 0])
+    textColorDisabled: List = field(default_factory=lambda: [100,100,100,100])
+    
+    bkgColorHovered: List = field(default_factory=lambda: [0, 0, 0, 0])
+    bkgColorClicked: List = field(default_factory=lambda: [0, 0, 0, 0])
+    textColor: List = field(default_factory=lambda: [0, 0, 0, 0])
+
+    text: str = None
+    
+    def getId(self):
+        return uuid.uuid4()
 
     def getPars(self):
         return asdict(self)
@@ -73,18 +100,36 @@ class BaseItem(metaclass=ABCMeta):
             return screen_width * param
         else:
             return param
+        
+    def addStyles(self,stylesFunc:callable, item):
+        with dpg.theme() as item_theme:
+            with dpg.theme_component(dpg.mvAll):
+                stylesFunc()
+        dpg.bind_item_theme(item, item_theme)
 
-    def addStyles(self, tag=None):
-        if tag:
-            with dpg.theme() as item_theme:
-                with dpg.theme_component(dpg.mvAll):
-                    self.Styles()
-            dpg.bind_item_theme(tag, item_theme)
-        else:
-            with dpg.theme() as item_theme:
-                with dpg.theme_component(dpg.mvAll):
-                    self.Styles()
-            dpg.bind_item_theme(self.tag, item_theme)
+    # def addEnabledStyles(self, tag=None):
+    #     if tag:
+    #         with dpg.theme() as item_theme:
+    #             with dpg.theme_component(dpg.mvAll):
+    #                 self.enabledStyles()
+    #         dpg.bind_item_theme(tag, item_theme)
+    #     else:
+    #         with dpg.theme() as item_theme:
+    #             with dpg.theme_component(dpg.mvAll):
+    #                 self.enabledStyles()
+    #         dpg.bind_item_theme(self.tag, item_theme)
+
+    # def addDisabledStyles(self, tag=None):
+    #     if tag:
+    #         with dpg.theme() as item_theme:
+    #             with dpg.theme_component(dpg.mvAll):
+    #                 self.disabledStyles()
+    #         dpg.bind_item_theme(tag, item_theme)
+    #     else:
+    #         with dpg.theme() as item_theme:
+    #             with dpg.theme_component(dpg.mvAll):
+    #                 self.disabledStyles()
+    #         dpg.bind_item_theme(self.tag, item_theme)
 
     def addFont(self, tag=None):
         if self.font:
@@ -121,10 +166,28 @@ class BaseItem(metaclass=ABCMeta):
         #     dpg.add_item_hover_handler(callback=lambda s, a, u: print(f"hover_handler: {s} '\t' {a} '\t' {u}"))
         # dpg.bind_item_handler_registry(self.tag, ihr)
 
+    def disable(self):
+        dpg.move_item(f"{self.tag}_disabled", before=f"{self.tag}")
+        dpg.move_item(f"{self.tag}",parent= self.stage)
+        self.enabled = False
+
+        
+    
+    def enable(self):
+        dpg.move_item(f"{self.tag}",before=f"{self.tag}_disabled")
+        dpg.move_item(f"{self.tag}_disabled",parent= self.stage)
+        self.enabled = True
+
+
     @abstractmethod
-    def Styles(self):
+    def enabledStyles(self):
+        ...
+
+    @abstractmethod
+    def disabledStyles(self):
         ...
 
     @abstractmethod
     def create(self):
         ...
+    

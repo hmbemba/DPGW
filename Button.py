@@ -3,6 +3,7 @@ from BaseItem import BaseItem
 from Styles import setColor, setStyles
 import dearpygui.dearpygui as dpg
 from dataclasses import dataclass, field
+import uuid
 
 
 @dataclass(slots=True)
@@ -28,26 +29,30 @@ class Button(BaseItem):
 
     """
 
-    """Style and Configuration Properties"""
-
-    bkgColorHovered: List = field(default_factory=lambda: [0, 0, 0, 0])
-    bkgColorClicked: List = field(default_factory=lambda: [0, 0, 0, 0])
-    textColor: List = field(default_factory=lambda: [0, 0, 0, 0])
-
-    text: str = None
-    
-
     def __post_init__(self):
-        self.w = self.mapWidthHeight(self.w)
-        self.h = self.mapWidthHeight(self.h)
+        self.id = self.getId()
+        self.stage = dpg.add_stage(tag=f'item_stage_{self.id}')
+
 
     """Methods to style and create this Item"""
 
-    def Styles(self):
+    def enabledStyles(self):
         setColor.buttonBgColor(self.bkgColor)
         setColor.buttonBgHoveredColor(self.bkgColorHovered)
         setColor.buttonBgClickedColor(self.bkgColorClicked)
         setColor.textColor(self.textColor)
+        setColor.borderColor(self.borderColor)
+
+        setStyles.frameBorder(self.border)
+        setStyles.borderRadius(self.borderRadius)
+
+        setStyles.padding(self.padding[0], self.padding[1])
+
+    def disabledStyles(self):
+        setColor.buttonBgColor(self.bkgColorDisabled)
+        setColor.buttonBgHoveredColor(self.bkgColorHoveredDisabled)
+        setColor.buttonBgClickedColor(self.bkgColorClickedDisabled)
+        setColor.textColor(self.textColorDisabled)
         setColor.borderColor(self.borderColor)
 
         setStyles.frameBorder(self.border)
@@ -62,19 +67,34 @@ class Button(BaseItem):
             "height": self.h,
             "label": self.text,
             "callback": self.callback,
-            "user_data": self.user_data
+            "user_data": self.user_data,
         }
 
+        '''
+        If you supply a parent to the create function that will take precendence
+        '''
         if Parent:
             values["parent"] = Parent
+            self.parent = Parent
+        else:
+            values["parent"] = self.parent
 
-        dpg.add_button(**values)
+        self.enabledComp = dpg.add_button(**values)
+        self.disabledComp = dpg.add_button(**{**values,'parent': self.stage,"tag":f"{self.tag}_disabled", 'callback':...})
 
-        self.addStyles()
+        self.addStyles(self.enabledStyles,self.enabledComp)
+        self.addStyles(self.disabledStyles,self.disabledComp)
 
-        self.addFont()
+        self.addFont(self.enabledComp)
+        self.addFont(self.disabledComp)
 
-        if self.onHover:
-            self.setHoverCallback(self.onHover)
+
+        # if self.onHover:
+        #     self.setHoverCallback(self.onHover)
         
         return self
+
+
+
+
+
